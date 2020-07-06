@@ -1,0 +1,42 @@
+# Enviornment variables and secrets
+.env.local
+.env.*.local
+
+# Editor directories
+.vscode
+.personal
+erd/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info
+pip-wheel-metadata
+.cache/
+build/
+
+# Python Tests
+*~
+.*~
+.coverage/
+.coverage.*/
+.pytest_cache/
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# JS Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# NPM related
+node_modules/
+/dist/
+
+# MacOS
+.DS_Store
