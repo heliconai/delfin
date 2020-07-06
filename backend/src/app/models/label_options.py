@@ -5,6 +5,7 @@ from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import relationship
 
 from app.database.base_class import Base
+
 from .util import CastingArray
 
 if TYPE_CHECKING:
