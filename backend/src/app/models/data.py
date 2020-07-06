@@ -1,0 +1,25 @@
+from typing import TYPE_CHECKING
+
+from sqlalchemy import Column, ForeignKey, String, cast, text
+from sqlalchemy.dialects.postgresql import ARRAY, JSONB, UUID
+from sqlalchemy.orm import relationship
+
+from app.database.base_class import Base
+from .util import CastingArray
+
+if TYPE_CHECKING:
+    pass
+
+
+class Data(Base):
+    id = Column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        index=True,
+        server_default=text("uuid_generate_v4()"),
+    )
+    project_id = Column(UUID(as_uuid=True), ForeignKey("projects.id"), index=True)
+    project = relationship("Projects", back_populates="data")
+    name = Column(String, index=True)
+    properties = Column(JSONB, index=False)
+    scopes = Column(CastingArray(JSONB), index=False)
