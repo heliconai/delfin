@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, UUID4
 
@@ -9,11 +9,12 @@ class DataBase(BaseModel):
     name: str
 
 
-# TODO: Add support for type checking JSONB returns
+# Using Union of dict and None for JSONB columns as per
+# https://github.com/tiangolo/fastapi/issues/211
 # Properties to receive on data creation
 class DataCreate(DataBase):
-    properties: Optional[Any]
-    scopes: Optional[List[Any]]
+    properties: Optional[Union[dict, None]]
+    scopes: Optional[List[Union[dict, None]]]
 
 
 # Properties to recieve on project update
