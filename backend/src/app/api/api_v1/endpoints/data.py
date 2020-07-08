@@ -21,7 +21,7 @@ def read_datas(
     return data
 
 
-@router.get("/{id}", response_model=schemas.Project)
+@router.get("/{id}", response_model=schemas.Data)
 def read_data(*, db: Session = Depends(deps.get_db), id: UUID4) -> Any:
     """
     Get data by ID.
@@ -57,7 +57,7 @@ def update_data(
     return data
 
 
-@router.delete("/{id}", response_model=schemas.Project)
+@router.delete("/{id}", response_model=schemas.Data)
 def delete_data(*, db: Session = Depends(deps.get_db), id: UUID4) -> Any:
     """
     Delete a data row.
