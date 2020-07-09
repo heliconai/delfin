@@ -28,13 +28,13 @@ def read_label_option(*, db: Session = Depends(deps.get_db), id: UUID4) -> Any:
     """
     label_option = crud.label_options.get(db=db, id=id)
     if not label_option:
-        raise HTTPException(status_code=404, detail="Data not found")
+        raise HTTPException(status_code=404, detail="Label option not found")
     return label_option
 
 
 @router.post("/", response_model=schemas.LabelOption)
 def create_label_option(
-    *, db: Session = Depends(deps.get_db), label_option_in: schemas.DataCreate
+    *, db: Session = Depends(deps.get_db), label_option_in: schemas.LabelOptionCreate
 ) -> Any:
     """
     Create new label option.
@@ -48,14 +48,14 @@ def update_label_option(
     *,
     db: Session = Depends(deps.get_db),
     id: UUID4,
-    label_option_in: schemas.DataUpdate
+    label_option_in: schemas.LabelOptionUpdate
 ) -> Any:
     """
     Update a label option.
     """
     label_option = crud.label_options.get(db=db, id=id)
     if not label_option:
-        raise HTTPException(status_code=404, detail="Data not found")
+        raise HTTPException(status_code=404, detail="Label option not found")
     label_option = crud.label_options.update(
         db=db, db_obj=label_option, obj_in=label_option_in
     )
@@ -69,6 +69,6 @@ def delete_label_option(*, db: Session = Depends(deps.get_db), id: UUID4) -> Any
     """
     label_option = crud.label_options.get(db=db, id=id)
     if not label_option:
-        raise HTTPException(status_code=404, detail="Data not found")
+        raise HTTPException(status_code=404, detail="Label option not found")
     label_option = crud.label_options.remove(db=db, id=id)
     return label_option

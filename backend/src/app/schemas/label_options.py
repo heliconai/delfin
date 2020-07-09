@@ -9,14 +9,13 @@ class LabelOptionBase(BaseModel):
     annotation_type_id: UUID4
 
 
-# TODO: Add support for type checking JSONB returns
 # Properties to receive on data creation
 class LabelOptionCreate(LabelOptionBase):
     labels: Optional[List[Any]]
 
 
 # Properties to recieve on project update
-class LabelOptionUpdate(LabelOptionBase):
+class LabelOptionUpdate(LabelOptionCreate):
     pass
 
 
