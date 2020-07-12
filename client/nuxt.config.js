@@ -15,7 +15,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Delfin - The Friendly Annotation Tool' || process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -30,12 +30,15 @@ export default {
   */
   css: [
   ],
+  env: {
+    baseUrl:
+      process.env.NODE_ENV === 'production' ? 'http://127.0.0.1:8000/api/v1' : 'http://127.0.0.1:8000/api/v1'
+  },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-  ],
+  plugins: [ { src: '@/plugins/vue-shortkey.js', mode: 'client' }],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -45,13 +48,13 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/tailwindcss'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
+    'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
