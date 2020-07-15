@@ -34,9 +34,7 @@ def read_data_modality(*, db: Session = Depends(deps.get_db), id: UUID4) -> Any:
 
 @router.post("/", response_model=schemas.DataModality)
 def create_data_modality(
-    *,
-    db: Session = Depends(deps.get_db),
-    data_modality_in: schemas.DataModalityCreate
+    *, db: Session = Depends(deps.get_db), data_modality_in: schemas.DataModalityCreate
 ) -> Any:
     """
     Create new data modality.

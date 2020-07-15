@@ -19,8 +19,8 @@ class Data(Base):
         index=True,
         server_default=text("uuid_generate_v4()"),
     )
-    project_id = Column(UUID(as_uuid=True), ForeignKey("projects.id"), index=True)
-    project = relationship("Projects", back_populates="data")
+    dataset_id = Column(UUID(as_uuid=True), ForeignKey("datasets.id"), index=True)
+    dataset = relationship("Datasets", back_populates="data")
     name = Column(String, index=True)
     properties = Column(JSONB, index=False)
     scopes = Column(CastingArray(JSONB), index=False)

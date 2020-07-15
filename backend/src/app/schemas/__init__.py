@@ -5,11 +5,16 @@ from .annotation_types import (
     AnnotationTypeUpdate,
 )
 from .data import Data, DataCreate, DataInDB, DataUpdate
+from .data_modality import (
+    DataModality,
+    DataModalityCreate,
+    DataModalityInDB,
+    DataModalityUpdate,
+)
+from .datasets import Dataset, DatasetCreate, DatasetInDB, DatasetUpdate
 from .label_options import (
     LabelOption,
     LabelOptionCreate,
     LabelOptionInDB,
     LabelOptionUpdate,
 )
-from .projects import Project, ProjectCreate, ProjectInDB, ProjectUpdate
-from .data_modality import DataModality, DataModalityCreate, DataModalityInDB, DataModalityUpdate

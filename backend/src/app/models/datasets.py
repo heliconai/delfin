@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     pass
 
 
-class Projects(Base):
+class Datasets(Base):
     id = Column(
         UUID(as_uuid=True),
         primary_key=True,
@@ -20,5 +20,5 @@ class Projects(Base):
     name = Column(String, index=True)
     instructions = Column(String, index=False)
     data_modality = Column(String, index=False)
-    data = relationship("Data", back_populates="project")
-    label_options = relationship("LabelOptions", back_populates="project")
+    data = relationship("Data", back_populates="dataset")
+    label_options = relationship("LabelOptions", back_populates="dataset")

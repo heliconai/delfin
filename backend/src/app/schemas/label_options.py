@@ -14,7 +14,7 @@ class LabelOptionCreate(LabelOptionBase):
     labels: Optional[List[Any]]
 
 
-# Properties to recieve on project update
+# Properties to recieve on label option update
 class LabelOptionUpdate(LabelOptionCreate):
     pass
 

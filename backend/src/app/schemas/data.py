@@ -17,7 +17,7 @@ class DataCreate(DataBase):
     scopes: Optional[List[Union[dict, None]]]
 
 
-# Properties to recieve on project update
+# Properties to recieve on data update
 class DataUpdate(DataCreate):
     pass
 

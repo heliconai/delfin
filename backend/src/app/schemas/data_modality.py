@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import UUID4, BaseModel
 
 
@@ -13,7 +11,8 @@ class DataModalityBase(BaseModel):
 class DataModalityCreate(DataModalityBase):
     pass
 
-# Properties to recieve on project update
+
+# Properties to recieve on data update
 class DataModalityUpdate(DataModalityCreate):
     pass
 

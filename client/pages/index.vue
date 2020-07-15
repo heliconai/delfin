@@ -1,6 +1,6 @@
 <template>
   <div class="relative content-center items-center justify-center">
-    <div class="hero-bg absolute top-0 w-full h-full bg-center">
+    <div class="hero-bg absolute top-0 w-screen h-full bg-center">
       <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
     </div>
     <div
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="sm:flex sm:justify-between px-5 sm:space-x-5 z-50">
+    <div class="container sm:flex sm:justify-between px-5 sm:space-x-5 z-50">
       <div
         class="relative text-center flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
       >
@@ -49,7 +49,7 @@ settings_remote
           <h6 class="text-xl font-semibold">Built for Semi Supervised Learning</h6>
           <p
             class="mt-2 mb-4 text-gray-600"
-          >Delfin aims to provide a convenient interface for Machine Learning practitioners to embed active learning and semi-supervised learning approaches into their annotation workflow..</p>
+          >Delfin aims to provide a convenient interface for Machine Learning practitioners to embed active learning and semi-supervised learning approaches into their annotation workflow.</p>
         </div>
       </div>
       <div

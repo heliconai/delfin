@@ -37,7 +37,7 @@ def create_data(
     *, db: Session = Depends(deps.get_db), data_in: schemas.DataCreate
 ) -> Any:
     """
-    Create new project.
+    Create new data.
     """
     data = crud.data.create(db=db, obj_in=data_in)
     return data

@@ -4,23 +4,23 @@ from pydantic import UUID4, BaseModel
 
 
 # Shared properties
-class ProjectBase(BaseModel):
+class DatasetBase(BaseModel):
     name: str
     instructions: Optional[str] = None
 
 
-# Properties to recieve on project creation
-class ProjectCreate(ProjectBase):
+# Properties to recieve on dataset creation
+class DatasetCreate(DatasetBase):
     data_modality: str
 
 
-# Properties to recieve on project update
-class ProjectUpdate(ProjectBase):
+# Properties to recieve on dataset update
+class DatasetUpdate(DatasetBase):
     pass
 
 
 # Properties shared by models stored in DB
-class ProjectInDBBase(ProjectCreate):
+class DatasetInDBBase(DatasetCreate):
     id: UUID4
 
     class Config:
@@ -28,10 +28,10 @@ class ProjectInDBBase(ProjectCreate):
 
 
 # Properties to return to client
-class Project(ProjectInDBBase):
+class Dataset(DatasetInDBBase):
     pass
 
 
 # Properties properties stored in DB
-class ProjectInDB(ProjectInDBBase):
+class DatasetInDB(DatasetInDBBase):
     pass

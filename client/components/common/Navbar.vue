@@ -1,11 +1,11 @@
 <template>
-  <nav class="px-5 py-5 w-full bg-transparent absolute z-50">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center hover:opacity-50 cursor-pointer" href="/">
-          <Logo class="h-8 w-8" />
-          <div class="text-white font-fredoka text-xl">delfin</div>
-        </div>
-        <Hamburger class="sm:hidden" @click="toggleNavbar" :open="showMenu" />
+  <div class="px-5 py-5 w-full bg-transparent absolute z-50">
+    <div class="container flex items-center justify-between">
+      <div class="flex items-center hover:opacity-50 cursor-pointer" href="/">
+        <Logo class="h-9 w-9" />
+        <div class="text-white font-fredoka text-2xl">delfin</div>
+      </div>
+      <Hamburger class="sm:hidden" @click="toggleNavbar" :open="showMenu" />
       <div class="flex hidden sm:flex items-center justify-between space-x-5">
         <a
           class="flex text-white text-right font-semibold text-lg hover:text-medium-turquoise rounded"
@@ -23,8 +23,11 @@
       <button
         class="flex items-center bg-medium-turquoise px-4 py-1 text-rich-black text-right font-semibold text-lg hover:bg-bittersweet hover:text-white rounded-full"
         href="/login"
-      >Login/Sign Up <span class="material-icons ml-2">launch</span> </button>
-      </div>
+      >
+        Login
+        <span class="material-icons ml-2">launch</span>
+      </button>
+    </div>
     <div
       class="block menu relative mt-2 w-full rounded-lg bg-white z-50 shadow-2xl focus:shadow-outline"
       v-bind:class="showMenu ? 'show-menu' : 'hide'"
@@ -38,7 +41,7 @@
         href="#"
       >GitHub</a>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>

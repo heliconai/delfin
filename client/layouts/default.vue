@@ -1,9 +1,10 @@
 <template>
-  <div class="flex flex-col h-screen justify-between">
+  <div class="flex flex-col h-screen">
     <Navbar />
     <Nuxt />
     <Footer />
   </div>
+
 </template>
 
 <script>
