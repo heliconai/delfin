@@ -1,14 +1,16 @@
 <template>
   <div>
-    <h1 class="title">Data Sets</h1>
     <card
       class="has-table has-mobile-sort-spaced"
-      title="Clients"
-      icon="account-multiple"
     >
       <data-table
         :data-url="'http://localhost:3000/clients.json'"
         :checkable="true"
+        :striped="false"
+        :hoverable="true"
+        :per-page="20"
+        :loading=false
+        :paginated=true
       />
     </card>
   </div>

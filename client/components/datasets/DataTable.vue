@@ -2,145 +2,100 @@
 <!-- TODO move data retrieval to services and stores -->
 <template>
   <div>
-    <modal :is-active="isModalActive" :trash-object-name="trashObjectName" @confirm="trashConfirm"
-               @cancel="trashCancel"/>
     <b-table
-      :checked-rows.sync="checkedRows"
+      :checked-rows="selected"
       :checkable="checkable"
-      :loading="isLoading"
+      :loading="loading"
       :paginated="paginated"
       :per-page="perPage"
-      :striped="true"
-      :hoverable="true"
+      :striped="striped"
+      :hoverable="hoverable"
       default-sort="name"
-      :data="clients">
-
+      :data="empty ? [] : datasets"
+      @check="updateSelection"
+    >
       <template slot-scope="props">
         <b-table-column class="has-no-head-mobile is-image-cell">
           <div class="image">
-            <img :src="props.row.avatar" class="is-rounded">
+            <img :src="props.row.avatar" class="is-rounded" />
           </div>
         </b-table-column>
-        <b-table-column label="Name" field="name" sortable>
-          {{ props.row.name }}
-        </b-table-column>
-        <b-table-column label="Company" field="company" sortable>
-          {{ props.row.company }}
-        </b-table-column>
-        <b-table-column label="City" field="city" sortable>
-          {{ props.row.city }}
-        </b-table-column>
-        <b-table-column class="is-progress-col" label="Progress" field="progress" sortable>
-          <progress class="progress is-small is-primary" :value="props.row.progress" max="100">{{ props.row.progress }}</progress>
-        </b-table-column>
-        <b-table-column label="Created">
-          <small class="has-text-grey is-abbr-like" :title="props.row.created">{{ props.row.created }}</small>
-        </b-table-column>
-        <b-table-column custom-key="actions" class="is-actions-cell">
+        <b-table-column label="Dataset Name" field="name" sortable><nuxt-link :to="`/datasets/${props.row.id}`">{{ props.row.name }}</nuxt-link></b-table-column>
+        <b-table-column label="Created On" field="created_on" sortable>{{ props.row.created_on | formatDateTime }}</b-table-column>
+        <b-table-column label="Updated On" field="updated_on" sortable>{{ props.row.updated_on | formatDateTime }}</b-table-column>
+        <b-table-column custom-key="actions" sticky class="is-actions-cell">
           <div class="buttons is-right">
-            <router-link :to="{name:'client.edit', params: {id: props.row.id}}" class="button is-small is-primary">
-              <b-icon icon="account-edit" size="is-small"/>
-            </router-link>
-            <button class="button is-small is-danger" type="button" @click.prevent="trashModal(props.row)">
-              <b-icon icon="trash-can" size="is-small"/>
-            </button>
+            <nuxt-link :to="`/datasets/${props.row.id}/admin`" class="button is-info">
+            <i class="material-icons mr-1">settings</i>
+            Admin
+            </nuxt-link>
+            <nuxt-link :to="`/datasets/${props.row.id}`" class="button">
+            <i class="material-icons mr-1">perm_media</i>
+            Data
+            </nuxt-link>
           </div>
         </b-table-column>
       </template>
 
-      <section class="section" slot="empty">
-        <div class="content has-text-grey has-text-centered">
-          <template v-if="isLoading">
+      <template v-if="!loading" slot="empty">
+        <section class="section">
+          <div class="content has-text-grey has-text-centered">
             <p>
-              <b-icon icon="dots-horizontal" size="is-large"/>
+              <i class="material-icons md-48">info</i>
             </p>
-            <p>Fetching data...</p>
-          </template>
-          <template v-else>
-            <p>
-              <b-icon icon="emoticon-sad" size="is-large"/>
-            </p>
-            <p>Nothing's here&hellip;</p>
-          </template>
-        </div>
-      </section>
+            <p>No Datasets Available&hellip;</p>
+          </div>
+        </section>
+      </template>
     </b-table>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Modal from '@/components/common/Modal'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'DataTable',
-  components: { Modal },
   props: {
     dataUrl: {
       type: String,
       default: null
     },
-    checkable: {
+    striped : {
       type: Boolean,
       default: false
+    },
+    hoverable : {
+      type: Boolean,
+      default: true
+    },
+    checkable : {
+      type: Boolean,
+      default: true
+    },
+    paginated : {
+      type: Boolean,
+      default: true
+    },
+    perPage : {
+      type: Number,
+      default : 20
     }
-  },
-  data () {
-    return {
-      isModalActive: false,
-      trashObject: null,
-      clients: [],
-      isLoading: false,
-      paginated: false,
-      perPage: 10,
-      checkedRows: []
-    }
-  },
+    },
   computed: {
-    trashObjectName () {
-      if (this.trashObject) {
-        return this.trashObject.name
-      }
-      return null
-    }
+    ...mapState('datasets', ['datasets', 'selected', 'loading', 'empty'])
+
   },
-  mounted () {
-    if (this.dataUrl) {
-      this.isLoading = true
-      axios
-        .get(this.dataUrl)
-        .then(r => {
-          this.isLoading = false
-          if (r.data && r.data.data) {
-            if (r.data.data.length > this.perPage) {
-              this.paginated = true
-            }
-            this.clients = r.data.data
-          }
-        })
-        .catch(e => {
-          this.isLoading = false
-          this.$buefy.toast.open({
-            message: `CANNOT GET JSON Error: ${e.message}`,
-            type: 'is-danger'
-          })
-        })
-    }
+  created() {
+    this.getDatasetList()
   },
   methods: {
-    trashModal (trashObject) {
-      this.trashObject = trashObject
-      this.isModalActive = true
-    },
-    trashConfirm () {
-      this.isModalActive = false
-      this.$buefy.snackbar.open({
-        message: 'Confirmed',
-        queue: false
-      })
-    },
-    trashCancel () {
-      this.isModalActive = false
+    ...mapActions('datasets', ['getDatasetList']),
+    ...mapMutations('datasets', ['updateSelected']),
+
+    updateSelection(selected) {
+      this.updateSelected(selected)
     }
-  }
+    }
 }
 </script>

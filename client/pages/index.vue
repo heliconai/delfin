@@ -11,7 +11,7 @@
           <div>
             <h1
               class="mt-10 text-white font-semibold md:text-5xl text-3xl"
-            >Multi-Task Annotations Toolkit.</h1>
+            >A Multi-Task Annotation Toolkit.</h1>
             <p
               class="mt-4 text-lg md:text-2xl text-gray-300"
             >Delfin provides a unified interface to manage and accelerate generation of labeled data.</p>

@@ -38,9 +38,5 @@ class Settings(BaseSettings):
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
 
-    class Config:
-        case_sensitive = True
-        env_file = "../../../../.env.local"
-
 
 settings = Settings()

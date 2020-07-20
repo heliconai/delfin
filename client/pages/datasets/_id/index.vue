@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1 class="title">Data List</h1>
+      <h1 class="title">Labeling Set</h1>
   </div>
 </template>
 

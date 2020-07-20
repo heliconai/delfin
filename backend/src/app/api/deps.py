@@ -1,11 +1,11 @@
 from typing import Generator
 
-from app.database.session import SessiongLocal
+from app.database.session import SessionLocal
 
 
 def get_db() -> Generator:
     try:
-        db = SessiongLocal()
+        db = SessionLocal()
         yield db
     finally:
         db.close()

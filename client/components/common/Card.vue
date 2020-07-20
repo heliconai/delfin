@@ -2,11 +2,11 @@
   <div class="card">
     <header v-if="title" class="card-header">
       <p class="card-header-title">
-        <b-icon v-if="icon" :icon="icon" custom-size="default"/>
+        <i v-if="icon" class="material-icons">{{ icon }}</i>
         {{ title }}
       </p>
       <a v-if="headerIcon" href="#" class="card-header-icon" aria-label="more options" @click.prevent="headerIconClick">
-        <b-icon :icon="headerIcon" custom-size="default"/>
+        <i v-if="headerIcon" class="material-icons">{{ headerIcon }}</i>
       </a>
     </header>
     <div class="card-content">

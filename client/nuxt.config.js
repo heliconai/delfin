@@ -39,7 +39,7 @@ export default {
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [ { src: '@/plugins/vue-shortkey.js', mode: 'client' }],
+  plugins: [ { src: '@/plugins/vue-shortkey.js', mode: 'client' }, {src: '@/plugins/format-date.js', mode: 'client'}],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -58,13 +58,23 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
   ],
+  env: {
+    baseUrl: "http://127.0.0.1:8000/api/v1"
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://127.0.0.1:8000/api/v1', // Used as fallback if no runtime config is provided
+  },
+  moment: {
+    timezone: true,
+    defaultTimezone: 'America/New_York',
+    startYear: 2020,
+    endYear: 3000
   },
   /*
   ** Build configuration

@@ -1,10 +1,10 @@
 from typing import Optional
 
 from pydantic import UUID4, BaseModel
-
+from app.schemas.base_schema import BaseSchema
 
 # Shared properties
-class DatasetBase(BaseModel):
+class DatasetBase(BaseSchema):
     name: str
     instructions: Optional[str] = None
 
