@@ -1,0 +1,40 @@
+{
+  "name": "delfin",
+  "descripion": "Delfin - The Friendly Annotation Tool",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "bulma": "^0.9.0",
+    "moment": "^2.27.0",
+    "numeral": "^2.0.6",
+    "nuxt": "^2.13.0",
+    "nuxt-buefy": "^0.3.31",
+    "vue-shortkey": "^3.1.7"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.3",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.0.1",
+    "node-sass": "^4.14.1",
+    "nuxt-webfontloader": "^1.1.0",
+    "prettier": "^2.0.5",
+    "sass-loader": "^9.0.2",
+    "vue-jest": "^3.0.4"
+  }
+}

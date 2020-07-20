@@ -9,7 +9,7 @@ services:
     volumes:
       - delfin-database-data:/var/lib/postgresql/data/pgdata
     env_file:
-      - .env
+      - .env.local
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - postgresdb
     env_file:
-      - .env
+      - .env.local
     ports:
       - "5050:80"
 
